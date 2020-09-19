@@ -1,4 +1,4 @@
-package app;
+package application;
 import java.net.URL;
 
 import java.util.ResourceBundle;
@@ -15,7 +15,9 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+
 public class SnakeController {
+	
 	@FXML
     private ResourceBundle resources;
 
@@ -57,9 +59,9 @@ public class SnakeController {
         GraphicsContext gc = canvas.getGraphicsContext2D();
 	    snake = new Snake(gc);
 	    poeng = new Poeng(gc);
-        poeng.move(snake);
-        Sound sound=new Sound();
-        sound.play("./src/app/Refreshing_Elevator_music-9v9-Nw4nAZg.wav",100);
+            poeng.move(snake);
+	    Sound sound=new Sound();
+            sound.play("./src/app/Refreshing_Elevator_music-9v9-Nw4nAZg.wav",100);
 	    Timeline timeline = new Timeline();
 	    timeline.setCycleCount(Timeline.INDEFINITE);
 	    timeline.getKeyFrames().add(
@@ -70,7 +72,7 @@ public class SnakeController {
                     	highScore.setText(snake.getHighScore().get(0));
                     	seco.setText(snake.getHighScore().get(1));
                     	if (!snake.addHead() || snake.eats(poeng)) {
-                    		if(snake.eats(poeng)) {
+				if(snake.eats(poeng)) {
                     			sound.play("./src/app/pointSound.wav",0);
                     		}
                         	score.setText("Score: " + snake.getScore());
@@ -85,5 +87,5 @@ public class SnakeController {
     void handleKeyPressed(KeyEvent event) {
 		snake.keyPressed(event);    	
     }
-    
+
 }
